@@ -1,0 +1,794 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+
+  background-color: #f8fafc;
+  color: #0f172a;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   DARK MODE ROOT
+   ========================================================= */
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   DO NOT globally style div / span / p.
+   Individual components and Tailwind classes control them.
+   ========================================================= */
+
+
+/* =========================================================
+   TEXT HELPERS
+   ========================================================= */
+
+html:not(.dark) .text-gray-500 {
+  color: #64748b !important;
+}
+
+html:not(.dark) .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+html:not(.dark) .text-gray-600 {
+  color: #475569 !important;
+}
+
+html.dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+
+/* =========================================================
+   PREMIUM COMPONENT STYLES
+   ========================================================= */
+
+@layer components {
+
+  /* =======================================================
+     BUTTONS
+     ======================================================= */
+
+  .btn {
+    @apply inline-flex items-center justify-center
+      px-5 py-2.5
+      rounded-xl
+      font-semibold
+      transition-all duration-300
+      focus:outline-none
+      focus:ring-2
+      focus:ring-offset-2
+      disabled:opacity-50
+      disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn
+      bg-gradient-to-r
+      from-primary-500
+      to-primary-700
+      text-white
+      hover:from-primary-600
+      hover:to-primary-800
+      hover:shadow-glow
+      focus:ring-primary-500
+      transform
+      hover:-translate-y-0.5
+      active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply btn
+      bg-gray-100
+      text-gray-800
+      hover:bg-gray-200
+      dark:bg-gray-700
+      dark:text-gray-100
+      dark:hover:bg-gray-600
+      focus:ring-gray-400;
+  }
+
+  .btn-danger {
+    @apply btn
+      bg-danger
+      text-white
+      hover:bg-red-600
+      hover:shadow-lg
+      focus:ring-red-500
+      transform
+      hover:-translate-y-0.5;
+  }
+
+  .btn-success {
+    @apply btn
+      bg-success
+      text-white
+      hover:bg-emerald-600
+      hover:shadow-lg
+      focus:ring-emerald-500
+      transform
+      hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply btn
+      border-2
+      border-primary-500
+      text-primary-600
+      hover:bg-primary-50
+      dark:text-primary-300
+      dark:hover:bg-primary-900/30
+      focus:ring-primary-400;
+  }
+
+  .btn-ghost {
+    @apply btn
+      text-gray-600
+      hover:bg-gray-100
+      dark:text-gray-300
+      dark:hover:bg-gray-800;
+  }
+
+
+  /* =======================================================
+     INPUTS
+     ======================================================= */
+
+  .input-field {
+    @apply w-full
+      px-4
+      py-2.5
+      rounded-xl
+      border
+      border-gray-200
+      bg-white
+      dark:border-gray-700
+      dark:bg-gray-800
+      dark:text-gray-100
+      focus:outline-none
+      focus:ring-2
+      focus:ring-primary-500
+      focus:border-transparent
+      transition-all duration-200
+      placeholder-gray-400;
+  }
+
+  .input-error {
+    @apply border-red-500
+      focus:ring-red-500;
+  }
+
+
+  /* =======================================================
+     CARDS
+     ======================================================= */
+
+  .glass-card {
+    @apply bg-white/80
+      dark:bg-gray-800/60
+      backdrop-blur-lg
+      border
+      border-white/20
+      dark:border-gray-700/30
+      rounded-2xl;
+  }
+
+  .card {
+    @apply bg-white
+      dark:bg-gray-800
+      rounded-2xl
+      shadow-card
+      p-6
+      border
+      border-gray-100
+      dark:border-gray-700
+      transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply card
+      hover:shadow-hover
+      hover:border-primary-200
+      dark:hover:border-primary-700
+      hover:-translate-y-1;
+  }
+
+
+  /* =======================================================
+     BADGES
+     ======================================================= */
+
+  .badge {
+    @apply inline-flex
+      items-center
+      gap-1
+      px-3
+      py-1
+      rounded-full
+      text-xs
+      font-semibold;
+  }
+
+  .badge-primary {
+    @apply badge
+      bg-primary-100
+      text-primary-700
+      dark:bg-primary-900/50
+      dark:text-primary-300;
+  }
+
+  .badge-success {
+    @apply badge
+      bg-emerald-100
+      text-emerald-700
+      dark:bg-emerald-900/50
+      dark:text-emerald-300;
+  }
+
+  .badge-warning {
+    @apply badge
+      bg-amber-100
+      text-amber-700
+      dark:bg-amber-900/50
+      dark:text-amber-300;
+  }
+
+  .badge-danger {
+    @apply badge
+      bg-red-100
+      text-red-700
+      dark:bg-red-900/50
+      dark:text-red-300;
+  }
+
+
+  /* =======================================================
+     TEXT
+     ======================================================= */
+
+  .text-gradient {
+    @apply bg-gradient-to-r
+      from-primary-500
+      via-secondary-500
+      to-primary-500
+      bg-clip-text
+      text-transparent;
+  }
+
+  .text-h1 {
+    @apply text-4xl
+      md:text-5xl
+      font-bold
+      tracking-tight;
+  }
+
+  .text-h2 {
+    @apply text-3xl
+      font-bold
+      tracking-tight;
+  }
+
+  .text-h3 {
+    @apply text-2xl
+      font-bold;
+  }
+
+  .text-subtitle {
+    @apply text-lg
+      text-gray-600
+      dark:text-gray-400;
+  }
+
+
+  /* =======================================================
+     NAVIGATION
+     ======================================================= */
+
+  .nav-link {
+    @apply px-4
+      py-2
+      rounded-lg
+      text-sm
+      font-medium
+      text-gray-600
+      dark:text-gray-300
+      hover:bg-gray-100
+      dark:hover:bg-gray-800
+      hover:text-primary-600
+      dark:hover:text-primary-400
+      transition-all duration-200;
+  }
+
+  .nav-link-active {
+    @apply nav-link
+      bg-primary-50
+      dark:bg-primary-900/30
+      text-primary-600
+      dark:text-primary-400;
+  }
+
+
+  /* =======================================================
+     LOADING
+     ======================================================= */
+
+  .spinner {
+    @apply animate-spin
+      rounded-full
+      border-4
+      border-primary-200
+      border-t-primary-600;
+  }
+
+  .skeleton {
+    @apply animate-pulse
+      bg-gray-200
+      dark:bg-gray-700
+      rounded-lg;
+  }
+
+
+  /* =======================================================
+     GRADIENT BACKGROUNDS
+     ======================================================= */
+
+  .gradient-bg {
+    background:
+      linear-gradient(
+        135deg,
+        #0c2d6b 0%,
+        #1e3a8a 25%,
+        #312e81 50%,
+        #6d28d9 75%,
+        #db2777 100%
+      );
+
+    background-size: 400% 400%;
+
+    animation:
+      gradientX 8s ease infinite;
+  }
+
+  .gradient-light {
+    background:
+      linear-gradient(
+        135deg,
+        #f0f9ff 0%,
+        #e0f2fe 50%,
+        #fdf4ff 100%
+      );
+  }
+
+
+  /* =======================================================
+     FORM
+     ======================================================= */
+
+  .form-label {
+    @apply block
+      text-sm
+      font-medium
+      mb-1.5
+      text-gray-700
+      dark:text-gray-300;
+  }
+
+  .form-hint {
+    @apply mt-1
+      text-xs
+      text-gray-500
+      dark:text-gray-400;
+  }
+
+
+  /* =======================================================
+     EMPTY STATE
+     ======================================================= */
+
+  .empty-state {
+    @apply flex
+      flex-col
+      items-center
+      justify-center
+      py-16
+      text-center;
+  }
+
+  .empty-state-icon {
+    @apply w-20
+      h-20
+      rounded-full
+      bg-gray-100
+      dark:bg-gray-700
+      flex
+      items-center
+      justify-center
+      text-gray-400
+      dark:text-gray-500
+      mx-auto
+      mb-4;
+  }
+
+
+  /* =======================================================
+     TOAST
+     ======================================================= */
+
+  .toast {
+    @apply fixed
+      bottom-6
+      right-6
+      z-50
+      p-4
+      rounded-xl
+      shadow-lg
+      flex
+      items-center
+      gap-3;
+  }
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradientX {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow:
+      0 0 0 0
+      rgba(14, 165, 233, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+
+    box-shadow:
+      0 0 0 10px
+      rgba(14, 165, 233, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+
+    box-shadow:
+      0 0 0 0
+      rgba(14, 165, 233, 0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.slide-in-down {
+  animation: slideInDown 0.3s ease-out;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  animation: gradientX 8s ease infinite;
+}
+
+.animate-pulse-ring {
+  animation:
+    pulse-ring
+    2s cubic-bezier(0.4, 0, 0.6, 1)
+    infinite;
+}
+
+
+/* =========================================================
+   GLASS
+   ========================================================= */
+
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.8);
+
+  border-color:
+    rgba(255, 255, 255, 0.1);
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   CODE EDITOR
+   ========================================================= */
+
+.monaco-editor,
+.monaco-editor-background {
+  color-scheme: dark;
+}
+/* =========================================================
+   INTERVIEWTWIN LIGHT MODE - FINAL SURFACE FIX
+   ========================================================= */
+
+html:not(.dark) body {
+  background-color: #f6f8fc !important;
+  color: #111827;
+}
+
+html:not(.dark) #root {
+  background-color: #f6f8fc !important;
+  color: #111827;
+}
+
+
+/* ---------------------------------------------------------
+   Convert hard-coded dark page backgrounds in LIGHT MODE
+   --------------------------------------------------------- */
+
+html:not(.dark) [class~="bg-[#05070d]"],
+html:not(.dark) [class~="bg-[#05070D]"],
+html:not(.dark) [class~="bg-[#070b14]"],
+html:not(.dark) [class~="bg-[#070B14]"],
+html:not(.dark) [class~="bg-[#0b0f18]"],
+html:not(.dark) [class~="bg-[#0B0F18]"],
+html:not(.dark) [class~="bg-[#0b1120]"],
+html:not(.dark) [class~="bg-[#0B1120]"],
+html:not(.dark) [class~="bg-[#0f172a]"],
+html:not(.dark) [class~="bg-[#0F172A]"],
+html:not(.dark) [class~="bg-gray-950"],
+html:not(.dark) [class~="bg-gray-900"],
+html:not(.dark) [class~="bg-slate-950"],
+html:not(.dark) [class~="bg-slate-900"],
+html:not(.dark) [class~="bg-zinc-900"] {
+  background-color: #f6f8fc !important;
+}
+
+
+/* ---------------------------------------------------------
+   Dark cards/surfaces → white in LIGHT MODE
+   --------------------------------------------------------- */
+
+html:not(.dark) [class~="bg-gray-800"],
+html:not(.dark) [class~="bg-slate-800"],
+html:not(.dark) [class~="bg-zinc-800"] {
+  background-color: #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT MODE HEADINGS
+   --------------------------------------------------------- */
+
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4,
+html:not(.dark) h5,
+html:not(.dark) h6 {
+  color: #111827;
+}
+
+
+/* ---------------------------------------------------------
+   Explicit dark text classes → readable light-mode text
+   --------------------------------------------------------- */
+
+html:not(.dark) .text-gray-950 {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .text-gray-900 {
+  color: #111827 !important;
+}
+
+html:not(.dark) .text-gray-800 {
+  color: #1f2937 !important;
+}
+
+html:not(.dark) .text-gray-700 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .text-gray-600 {
+  color: #475569 !important;
+}
+
+html:not(.dark) .text-gray-500 {
+  color: #64748b !important;
+}
+
+
+/* ---------------------------------------------------------
+   Common light-mode borders
+   --------------------------------------------------------- */
+
+html:not(.dark) [class~="border-white/[0.08]"],
+html:not(.dark) [class~="border-white/[0.06]"],
+html:not(.dark) [class~="border-gray-700"] {
+  border-color: #e2e8f0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   Light-mode inputs
+   --------------------------------------------------------- */
+
+html:not(.dark) input,
+html:not(.dark) textarea,
+html:not(.dark) select {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+
+/* ---------------------------------------------------------
+   Keep colored/gradient sections intact
+   --------------------------------------------------------- */
+
+html:not(.dark) .gradient-bg {
+  color: white;
+}
+
+

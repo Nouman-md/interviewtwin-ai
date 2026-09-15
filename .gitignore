@@ -1,0 +1,258 @@
+# ============================================================
+# INTERVIEWTWIN AI - GITIGNORE
+# ============================================================
+
+
+# ============================================================
+# ENVIRONMENT VARIABLES / SECRETS
+# ============================================================
+
+.env
+.env.*
+*.env
+*.env.*
+
+# Spring Boot secret configuration
+backend/src/main/resources/application.properties
+backend/src/main/resources/application-prod.properties
+backend/src/main/resources/application-secrets.properties
+
+# Generic secret files
+**/*secret*
+**/*secrets*
+**/*credentials*
+**/*credential*
+**/*password*
+**/*private-key*
+**/*private_key*
+
+
+# ============================================================
+# FRONTEND - VITE / REACT
+# ============================================================
+
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+
+frontend/.env
+frontend/.env.*
+frontend/*.local
+
+
+# ============================================================
+# ADMIN FRONTEND
+# ============================================================
+
+admin-frontend/node_modules/
+admin-frontend/dist/
+admin-frontend/.vite/
+admin-frontend/.cache/
+
+admin-frontend/.env
+admin-frontend/.env.*
+admin-frontend/*.local
+
+
+# ============================================================
+# NODE.JS
+# ============================================================
+
+node_modules/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.npm/
+.yarn/
+.pnpm-store/
+
+
+# ============================================================
+# JAVA / SPRING BOOT / MAVEN
+# ============================================================
+
+backend/target/
+target/
+out/
+
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven generated files
+.mvn/timing.properties
+
+
+# ============================================================
+# GRADLE
+# ============================================================
+
+.gradle/
+build/
+
+
+# ============================================================
+# IDE - INTELLIJ IDEA
+# ============================================================
+
+.idea/
+*.iml
+*.iws
+*.ipr
+
+
+# ============================================================
+# VS CODE
+# ============================================================
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+
+# ============================================================
+# ECLIPSE
+# ============================================================
+
+.classpath
+.project
+.settings/
+
+
+# ============================================================
+# NETBEANS
+# ============================================================
+
+nbproject/private/
+nbbuild/
+dist/
+.nb-gradle/
+
+
+# ============================================================
+# DATABASE - LOCAL / BACKUPS
+# ============================================================
+
+*.db
+*.sqlite
+*.sqlite3
+
+*.sql.backup
+*.sql.bak
+*.sql.old
+*.dump
+
+# Keep normal database SQL files.
+# They may be required to recreate the application database.
+
+
+# ============================================================
+# APPLICATION UPLOADS
+# ============================================================
+
+# Root uploads
+uploads/*
+!uploads/.gitkeep
+
+# Backend user uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+
+# ============================================================
+# LOGS
+# ============================================================
+
+*.log
+
+logs/
+log/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# ============================================================
+# TEMPORARY FILES
+# ============================================================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.backup
+*~
+
+temp/
+tmp/
+
+
+# ============================================================
+# OPERATING SYSTEM FILES
+# ============================================================
+
+.DS_Store
+.DS_Store?
+._*
+
+.Spotlight-V100
+.Trashes
+
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+desktop.ini
+
+
+# ============================================================
+# BUILD / TEST / COVERAGE
+# ============================================================
+
+coverage/
+.nyc_output/
+.cache/
+.parcel-cache/
+.eslintcache
+
+
+# ============================================================
+# GENERATED FILES
+# ============================================================
+
+*.generated.*
+*.min.js
+*.min.css
+
+
+# ============================================================
+# ARCHIVES / BACKUPS
+# ============================================================
+
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.tgz
+
+
+# ============================================================
+# LOCAL DEVELOPMENT FILES
+# ============================================================
+
+local/
+temp/
+tmp/
+
+.task_progress.md
+query
