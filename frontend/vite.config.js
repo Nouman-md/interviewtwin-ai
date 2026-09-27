@@ -16,5 +16,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false
-  }
+  },
+preview: {
+  allowedHosts: ['miraculous-dream-production-45ed.up.railway.app']
+}
 })
+
