@@ -178,76 +178,88 @@ public class ResumeController {
         }
     }
 
-    @GetMapping("/{resumeId}/download")
-    public ResponseEntity<?> downloadResume(
-            Authentication authentication,
-            @PathVariable Long resumeId) {
+   @GetMapping("/{resumeId}/download")
+public ResponseEntity<?> downloadResume(
+        Authentication authentication,
+        @PathVariable Long resumeId) {
 
-        try {
-            Long userId =
-                    securityUtils.getCurrentUserId(authentication);
+    try {
+        Long userId =
+                securityUtils.getCurrentUserId(authentication);
 
-            ResumeDTO resume =
-                    resumeService.getResumeById(
-                            resumeId,
-                            userId
-                    );
+        ResumeDTO resume =
+                resumeService.getResumeById(
+                        resumeId,
+                        userId
+                );
 
-            byte[] fileContent =
-                    resumeService.getResumeFile(
-                            resumeId,
-                            userId
-                    );
+        byte[] fileContent =
+                resumeService.getResumeFile(
+                        resumeId,
+                        userId
+                );
 
-            String fileName =
-                    sanitizeDownloadFileName(
-                            resume.getFileName()
-                    );
+        String fileName =
+                sanitizeDownloadFileName(
+                        resume.getFileName()
+                );
 
-            String contentDisposition =
-                    "attachment; filename=\"" +
-                            fileName +
-                            "\"";
+        String contentDisposition =
+                "attachment; filename=\"" +
+                        fileName +
+                        "\"";
 
-            return ResponseEntity
-                    .ok()
-                    .header(
-                            HttpHeaders.CONTENT_DISPOSITION,
-                            contentDisposition
-                    )
-                    .header(
-                            "X-Content-Type-Options",
-                            "nosniff"
-                    )
-                    .contentType(
-                            MediaType.APPLICATION_OCTET_STREAM
-                    )
-                    .body(fileContent);
+        return ResponseEntity
+                .ok()
+                .header(
+                        HttpHeaders.CONTENT_DISPOSITION,
+                        contentDisposition
+                )
+                .header(
+                        "X-Content-Type-Options",
+                        "nosniff"
+                )
+                .contentType(
+                        MediaType.APPLICATION_OCTET_STREAM
+                )
+                .body(fileContent);
 
-        } catch (IOException e) {
+    } catch (IOException e) {
 
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of(
-                            "message",
-                            "Failed to download resume",
-                            "success",
-                            "false"
-                    ));
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of(
+                        "message",
+                        "Failed to download resume",
+                        "success",
+                        "false"
+                ));
 
-        } catch (RuntimeException e) {
+    } catch (RuntimeException e) {
 
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(Map.of(
-                            "message",
-                            "Resume not found",
-                            "success",
-                            "false"
-                    ));
+        String message = e.getMessage();
+
+        if (message == null || message.isBlank()) {
+            message = "Resume not found";
         }
-    }
 
+        if (!message.equals("Resume not found")
+                && !message.equals("Resume file not found")
+                && !message.equals("Invalid resume storage path")) {
+
+            message = "Resume not found";
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of(
+                        "message",
+                        message,
+                        "success",
+                        "false"
+                ));
+    }
+}
     /**
      * Search for a query string within a specific resume's content.
      */
