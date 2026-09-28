@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [react()],
 
   preview: {
-    allowedHosts: ['distinguished-optimism-production-28ad.up.railway.app']
+    allowedHosts: [    'interviewtwin-admin.up.railway.app'
+]
   }
 })
